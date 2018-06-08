@@ -133,6 +133,7 @@ static const OptionInfoRec Options[] = {
     {OPTION_ZAPHOD_HEADS, "ZaphodHeads", OPTV_STRING, {0}, FALSE},
     {OPTION_DOUBLE_SHADOW, "DoubleShadow", OPTV_BOOLEAN, {0}, FALSE},
     {OPTION_ATOMIC, "Atomic", OPTV_BOOLEAN, {0}, FALSE},
+    {OPTION_SHADOW_PRIMARY, "ShadowPrimary", OPTV_BOOLEAN, {0}, FALSE},
     {-1, NULL, OPTV_NONE, {0}, FALSE}
 };
 
@@ -1039,6 +1040,13 @@ PreInit(ScrnInfoPtr pScrn, int flags)
 
     if (xf86ReturnOptValBool(ms->drmmode.Options, OPTION_SW_CURSOR, FALSE)) {
         ms->drmmode.sw_cursor = TRUE;
+    }
+
+    ms->drmmode.shadow_primary =
+            xf86ReturnOptValBool(ms->drmmode.Options, OPTION_SHADOW_PRIMARY,
+                                 FALSE);
+    if (ms->drmmode.shadow_primary) {
+        xf86DrvMsg(pScrn->scrnIndex, X_INFO, "ShadowPrimary enabled\n");
     }
 
     ms->cursor_width = 64;
