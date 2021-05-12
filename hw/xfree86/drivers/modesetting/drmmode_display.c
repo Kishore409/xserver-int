@@ -48,6 +48,7 @@
 #include "xf86Crtc.h"
 #include "drmmode_display.h"
 #include "present.h"
+#include "gcstruct.h"
 
 #include <cursorstr.h>
 
